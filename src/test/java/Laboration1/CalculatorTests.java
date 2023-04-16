@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 public class CalculatorTests {
 
+    Calculator Calculator = new Calculator();
+
     @Test
     void TwoPlusTwoEqualFour() {
 
@@ -59,4 +61,29 @@ public class CalculatorTests {
         Assertions.assertNotEquals(2, Calculator.divide(2, 4));
 
     }
+
+    @Test
+    void SquareRootOfNineShouldEqualsThree() {
+        Assertions.assertEquals(3, (Calculator.squareRootOf(9)));
+
+    }
+
+    @Test
+    void SquareRootOfNineShouldEqualsTwo() {
+        Assertions.assertEquals(2, (Calculator.squareRootOf(9)));
+    }
+
+    @Test
+    void AreaOfNineShouldEqualsTwoHundredFiftyFourPointFourtySeven() {
+
+        Assertions.assertEquals(78.54, (Calculator.getArea(9)));
+    }
+
+    @Test
+    void CircumferenceOfNineShouldEqualsFiftySixPointFiftyFive() {
+
+        Assertions.assertEquals(56.55, (Calculator.getCircumference(9)));
+    }
+
+
 }

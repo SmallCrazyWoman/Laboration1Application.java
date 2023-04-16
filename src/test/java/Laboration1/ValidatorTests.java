@@ -6,111 +6,10 @@ import org.junit.jupiter.api.Test;
 public class ValidatorTests {
 Validator validator = new Validator();
     //Test phoneNumber
-    @Test
-    void phoneNumberStartWith0() {
 
-        String phoneNumber = "0708903269";
-
-        boolean result = !phoneNumber.startsWith("0");
-
-        Assertions.assertFalse(result);
-
-    }
 
     @Test
-    void phoneNumberDoesNotStartWith0() {
-
-        String phoneNumber = "21098";
-
-        boolean result = !phoneNumber.startsWith("0");
-
-        Assertions.assertTrue(result);
-
-    }
-
-    @Test
-    void phoneNumberIsANumber() {
-
-        String phoneNumber = "0708903269";
-
-        boolean result = phoneNumber.matches("[0-9]+");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void phoneNumberIsNotANumber() {
-
-        String phoneNumber = "asd";
-
-        boolean result = phoneNumber.matches("[0-9]+");
-
-        Assertions.assertFalse(result);
-    }
-
-    @Test
-    void phoneNumberIsMoreThan6Numbersandlessthan10() {
-
-        String phoneNumber = "0708903269";
-
-        boolean result = phoneNumber.length() < 6 || phoneNumber.length() > 10;
-
-        Assertions.assertFalse(result);
-    }
-
-    @Test
-    void phoneNumberIsMoreTLessThan6NumbersandMoreThan10() {
-
-        String phoneNumber = "21098";
-
-        boolean result = phoneNumber.length() < 6 || phoneNumber.length() > 10;
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void phoneNumberHaveCorrectNumbersAndAreNumbers() {
-
-        String phoneNumber = "0708903269";
-
-        boolean result = phoneNumber.length() < 6 || phoneNumber.length() > 10 && phoneNumber.matches("[0-9]+");
-
-        Assertions.assertFalse(result);
-
-    }
-
-    @Test
-    void phoneNumberAreNotNumbers() {
-
-        String phoneNumber = "asdfgh";
-
-        boolean result = phoneNumber.length() > 6 || phoneNumber.length() < 10;
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void phoneNumberHaveCorrectLengthAndAreNotNumbers() {
-
-        String phoneNumber = "asdfghjkl";
-
-        boolean result = phoneNumber.length() > 6 || phoneNumber.length() < 10 && phoneNumber.matches("[0-9]+");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void phoneNumberHaveCorrectLengthAndAreCharactersAndStartWith0() {
-
-        String phoneNumber = "0708903269";
-
-        boolean result = !phoneNumber.startsWith("0") && phoneNumber.length() > 6 || phoneNumber.length() < 10 && phoneNumber.matches("[0-9]+");
-
-        Assertions.assertFalse(result);
-    }
-
-    @Test
-    void ShouldEqualTrueIfPhoneNumberIsAPhoneNumber() {
+    void ShouldEqualTrueIfPhoneNumberIsANumber() {
 
         String phoneNumber = "0708903269";
 
@@ -133,6 +32,66 @@ Validator validator = new Validator();
     void ShouldEqualFalseIFNumberIsTooShort() {
 
         String phoneNumber = "01234";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void shouldEqualsFalseIfPhonenumberDoesNotStartWith0() {
+
+        String phoneNumber = "123456789";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void shouldEqualsFalseIfNumberIsTooLong() {
+
+        String phoneNumber = "070890326912";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void shouldEqualsFalseIfNumberContainSpace() {
+
+        String phoneNumber = "070 123456";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void shouldEqualsFalseIfNumberContainPlus() {
+
+        String phoneNumber = "+4621098";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void ShouldEqualTrueIfPhoneNumberIsSixToTenNumbersLong() {
+
+        String phoneNumber = "0701234567";
+
+        boolean result = validator.isPhoneNumberValid(phoneNumber);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void ShouldEqualFalseIfPhoneNumberContainsNumbersAndCharacters() {
+
+        String phoneNumber = "070asdfgh";
 
         boolean result = validator.isPhoneNumberValid(phoneNumber);
 
