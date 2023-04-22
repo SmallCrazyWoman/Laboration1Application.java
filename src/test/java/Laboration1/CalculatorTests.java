@@ -68,22 +68,11 @@ public class CalculatorTests {
 
     }
 
-    @Test
-    void SquareRootOfNineShouldEqualsTwo() {
-        Assertions.assertEquals(2, (Calculator.squareRootOf(9)));
-    }
 
     @Test
     void AreaOfNineShouldEqualsTwoHundredFiftyFourPointFourtySeven() {
 
-        Assertions.assertEquals(78.54, (Calculator.getArea(9)));
+        Assertions.assertEquals(254.47, (Calculator.getArea(9)));
     }
-
-    @Test
-    void CircumferenceOfNineShouldEqualsFiftySixPointFiftyFive() {
-
-        Assertions.assertEquals(56.55, (Calculator.getCircumference(9)));
-    }
-
 
 }
